@@ -134,11 +134,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 value = int(value)
             setattr(new_instance, key, value)
-        
+
         storage.new(new_instance)
         storage.save()
         print(new_instance.id)
-        
 
     def help_create(self):
         """ Help information for the create method """
@@ -220,12 +219,23 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+
+            if storage.__class__.__name__ == 'FileStorage':
+                objects = storage._FileStorage__objects
+            elif storage.__class__.__name__ == 'DBStorage':
+                objects = storage.all(args)
+
+            for k, v in objects.items():
                 if k.split('.')[0] == args:
-                    print_list.append(str(v))
+                    print_list.append(v.to_dict())
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
+            #  Check the type of storege and access objects accordingly
+            if storage.__class__.__name__ == 'FileStorage':
+                objects = storage._FileStorage__objects
+            elif storage.__class__.__name__ == 'DBStorage':
+                objects = storage.all()
+            for k, v in objects.items():
+                print_list.append(v.to_dict())
 
         print(print_list)
 
@@ -333,6 +343,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
