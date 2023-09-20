@@ -17,4 +17,3 @@ GRANT SELECT ON performance_schema.* TO 'hbnb_dev'@'localhost';
 
 -- Flush privileges to apply the changes
 FLUSH PRIVILEGES;
-
