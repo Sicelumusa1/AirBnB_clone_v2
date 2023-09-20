@@ -6,7 +6,8 @@ from os import getenv
 storage_type = getenv("HBNB_TYPE_STORAGE")
 
 #  Depending on the storage type, import and create the appropriate
-storage instance
+#  storage instance
+
 if storage_type == "db":
     from models.engine.db_storage import DBStorage
     storage = DBStorage()
