@@ -14,7 +14,7 @@ def do_pack():
     """
     try:
         time_now = datetime.utcnow().strftime('%Y%m%d%H%M%S')
-        archive_path = 'versins/web_static_{}.tgz'.format(time_now)
+        archive_path = 'versions/web_static_{}.tgz'.format(time_now)
         local('mkdir -p versions')
         local('tar -cvzf {} web_static'.format(archive_path))
         return archive_path
