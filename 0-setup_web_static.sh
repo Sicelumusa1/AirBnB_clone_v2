@@ -9,16 +9,16 @@ then
 fi
 
 # Create the directories needed if not already exist
-sudo mkdir -p /data/
-sudo mkdir -p /data/web_static/current
-sudo mkdir -p /data/web_static/current/releases/
 sudo mkdir -p /data/web_static/shared/
 sudo mkdir -p /data/web_static/releases/test/
 sudo touch /data/web_static/releases/test/index.html
-sudo echo -e "<html>\n <head>\n </head>\n <body>\n Holberton School\n </body>\n </html>" | sudo tee /data/web_static/releases/test/index.html
+sudo echo -e "<html>\n <head>\n </head>\n <body>\n    Holberton School\n </body>\n </html>" | sudo tee /data/web_static/releases/test/index.html
+
+# Delete the symbolic link if it exists
+sudo rm -rf /data/web_static/current
 
 # Create symbolic link
-sudo ln -s -f /data/web_static/releases/test/ /data/web_static/current
+sudo ln -s -f /data/web_static/releases/test /data/web_static/current
 
 # Give ownership of the /data/ directory to ubuntu and the group
 sudo chown -R ubuntu:ubuntu /data/
