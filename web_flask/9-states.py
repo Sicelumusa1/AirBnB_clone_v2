@@ -33,7 +33,8 @@ def cities_of_states(id):
 
     if state:
         cities = state.cities
-        return render_template("9-states.html", states=state.cities, stateId=id)
+        return render_template("9-states.html", states=[state], stateId=id)
+    return render_template("9-states.html", states=None, stateId=None)
 
 
 @app.teardown_appcontext
