@@ -126,4 +126,4 @@ class DBStorage:
         call remove() method on the private session attribute (self.__session)
         tips or close() on the class Session
         """
-        self.__session.close()
+        self.__session.remove()
