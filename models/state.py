@@ -32,4 +32,5 @@ class State(BaseModel, Base):
             Getter method to return the list of City objects
             from storage linked to the current State
             """
-            return [city for city in self.cities if city.state_id == self.id]
+            from models.city import City
+            return storage.all(City).values()
